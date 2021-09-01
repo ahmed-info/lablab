@@ -84,15 +84,17 @@ class CompanyCardController extends Controller
      */
     public function export(Request $request)
     {
-        $ext_xlsx = Excel::download(new CardsExport, 'card-'.date('Y-m-d').'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
-        $ext_xls =  Excel::download(new CardsExport, 'card-'.date('Y-m-d').'.xls', \Maatwebsite\Excel\Excel::XLS);
-        if($ext_xlsx){
-            return $ext_xlsx;
-        }
+        // $ext_xlsx = Excel::download(new CardsExport, 'card-'.date('Y-m-d').'.xlsx', \Maatwebsite\Excel\Excel::XLSX);
+        // $ext_xls =  Excel::download(new CardsExport, 'card-'.date('Y-m-d').'.xls', \Maatwebsite\Excel\Excel::XLS);
+        // if($ext_xlsx){
+        //     return $ext_xlsx;
+        // }
 
-        if($ext_xls){
-            return $ext_xls;
-        }
+        // if($ext_xls){
+        //     return $ext_xls;
+        // }
+
+       
     }
 
     public function upload()
@@ -106,33 +108,26 @@ class CompanyCardController extends Controller
 
     public function import(Request $request)
     {
-        $validation = Validator::make($request->all(),[
-            'attachment'=>'required|mimes:xlsx,xls',
-        ]);
 
-         if($validation->fails()){
-             return redirect()->back()->withErrors($validation)->withInput();
-         }
-        $file = $request->file('attachment');
-        $fileCompany = $request->file('attachment');
-        //queueImport
-        Excel::import(new CompaniesImport(), $fileCompany);
-        Excel::import(new CardsImport(), $file);
+        $getCompany = $_GET['getCompany'];
+        //'F:\my_Import\cards.xlsx'
 
-        return redirect()->route('card.index')->with([
-           'message' => 'importing started successfully',
-            'alert-type' =>'success'
-        ]);
+        if(file_exists('F:\my_Import\\'.$getCompany.'.xlsx')){
+            Excel::import(new CompaniesImport(), 'F:\my_Import\\'.$getCompany.'.xlsx');
+            Excel::import(new CardsImport(), 'F:\my_Import\\'.$getCompany.'.xlsx');
+
+            return redirect()->route('card.index')->with([
+                'message' => 'importing started successfully',
+                'alert-type' =>'success'
+            ]);
+        }else{
+            return redirect()->route('card.index')->with([
+                'message' => 'Please enter the correct company name',
+                'alert-type' =>'danger'
+            ]);
+        }
+    
     }
-
-    // public function search()
-    // {
-    //     $search_text = $_GET['query'];
-    //     $cards = CompanyCard::where('company_name','LIKE','%'.$search_text.'%')->paginate();
-    //     $companies = Company::all();
-
-    //     return view('card.search', compact('cards','companies'));
-    // }
 
     public function search()
     {

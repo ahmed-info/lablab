@@ -56,7 +56,7 @@
                     
 
                     <td><img src="../../../{{ $card->card_img }}" style="width: 100px" class="img-thumbnail" alt=""></td>
-                    <td>{!! QrCode::encoding('UTF-8')->generate(Hash::make($card->full_name . substr($card->national_number, 0, 4).substr($card->warranty_number, 0, 4)) )!!}</td>
+                    <td>{!! QrCode::encoding('UTF-8')->generate(Hash::make($card->full_name . substr($card->national_number, 0, 4).substr($card->ss_num, 0, 4)) )!!}</td>
                 </tr>
                 @endforeach
             </table>

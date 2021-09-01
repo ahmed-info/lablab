@@ -27,6 +27,7 @@
         <form class="input-group" method="GET" action="{{route('search')}}">
             <div class="form-group">
               <input type="search" id="form1" name="getSearch" placeholder="Search" class="form-control" />
+
             </div>
             <button type="submit" class="btn btn-primary">
               <i class="fas fa-search"></i>

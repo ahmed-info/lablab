@@ -22,7 +22,7 @@ class CompanyCardSeeder extends Seeder
             // 'created_at'        =>Carbon::now(),
             // 'updated_at'        =>Carbon::now(),
 
-            'warranty_number'   =>$faker->ean8(),
+            'ss_num'   =>$faker->ean8(),
             'full_name'         => $faker->sentence(),
             "gender"            => $faker->randomElement(["male", "female"]),
             'birth_date'        => $faker->dateTimeBetween('1930-01-01', '2003-12-31')->format('Y-m-d'),

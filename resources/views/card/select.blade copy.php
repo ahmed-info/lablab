@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -6,37 +7,61 @@
             <div class="card">
                 <div class="card-header d-flex">
                     {{ __('Cards') }}
-                    <form action="{{route('card.export')}}" method="POST" class="ml-auto">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-primary">export</button>
-                    </form>
+                    
                 </div>
 
                 <div class="card-body">
                     @if (session('message'))
-                        <div class="alert alert-{{session('alert-type')}}" role="alert">
+                        <div class="alert alert-{{ session('alert-type') }}" role="alert">
                             {{ session('message') }}
                         </div>
                     @endif
+                    <form class="input-group" method="GET" action="{{route('getCompany')}}">
+                        <div class="form-group">
+                        <input type="search" class="form-control input-sm" id="getCompany" placeholder="اكتب اسم الشركة" name="getCompany" required>
 
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-success">
+                          Import
+                        </button>
+                    </form>
+                    <form action="{{route('index')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control input-sm" id="from" placeholder="اكتب اسم الشركة" name="from" value="" required>
+                                    
+                                </div>
+                            
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary btn-sm" name="exportExcel">export</button>
+                                     {{-- <a href="{{route('card.import')}}" class="btn btn-sm btn-success">Import</a> --}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                {{-- <th>Warranty Number</th> --}}
-                                <th>Full Name</th>
-                                    {{-- <th>Gender</th>
-                                    <th>birth date</th>
-                                    <th>release date</th>
-                                    <th>expiry date</th>
-                                    <th>national number</th>
-                                    <th>mother name</th> --}}
-                                    <th>company name</th>
-                                    {{-- <th>location</th> --}}
-                                    <th>Image</th>
-                                    <th>QR Code</th>
+                                {{-- <th>warranty number</th> --}}
+                                <th>full name</th>
+                                {{-- <th>gender</th>
+                                <th>birth date</th>
+                                <th>release date</th>
+                                <th>expiry date</th>
+                                <th>national number</th>
+                                <th>mother name</th> --}}
+                                <th>company name</th>
+                                {{-- <th>location</th> --}}
+                                <th>image</th>
+                                <th>QR Code</th>
                             </tr>
                         </thead>
+                        
+
                         <tbody>
 
                             @forelse ($cards as $card)
@@ -63,7 +88,7 @@
                                 </td>
                                     {{-- <td>{!! QrCode::encoding('UTF-8')->generate($card->full_name) !!} </td> --}}
                                     {{-- <td>{!! QrCode::encoding('UTF-8')->generate(Hash::make($card->full_name)) !!} </td> --}}
-                                
+                               
 
                                     
 
@@ -71,13 +96,13 @@
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4">No Cards found</td>
+                                    <td colspan="11">No Cards found</td>
                                 </tr>
                             @endforelse
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="4">{{$cards->links()}}</td>
+                                {{-- <td colspan="11">{{$cards->links()}}</td> --}}
                             </tr>
                         </tfoot>
                     </table>

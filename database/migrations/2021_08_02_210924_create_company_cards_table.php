@@ -15,7 +15,7 @@ class CreateCompanyCardsTable extends Migration
     {
         Schema::create('company_cards', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('warranty_number')->nullable();
+            $table->bigInteger('ss_num')->nullable();
             $table->string('full_name');
             $table->enum("gender", ["ذكر", "انثى"]);
             $table->date('birth_date');

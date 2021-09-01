@@ -47,7 +47,7 @@ class CardsExport implements FromCollection, WithHeadings,ShouldAutoSize, WithEv
     // {
     //     return [
             
-    //         $cards->warranty_number,
+    //         $cards->ss_num,
     //         $cards->full_name,
     //         $cards->gender,
     //         $cards->birth_date,
@@ -65,7 +65,7 @@ class CardsExport implements FromCollection, WithHeadings,ShouldAutoSize, WithEv
     {
         return [
             'id',
-            'warranty number',
+            'ss num',
             'full name',
             'gender',
             'birth date',

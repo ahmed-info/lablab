@@ -18,13 +18,15 @@
 
                     <form action="{{route('card.import')}}" method="POST" class="ml-auto" enctype="multipart/form-data">
                         @csrf
-                        <div class="custom-file mb-3">
+                        {{-- attachment --}}
+                        
+                        {{-- <div class="custom-file mb-3">
                             <input type="file" name="attachment" class="custom-file-input" id="attachment" required>
                             <label class="custom-file-label" for="attachment">Choose Excel file...</label>
                             @error('attachment')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
-                          </div>
+                          </div> --}}
 
                         <div class="pt-4">
                         <button type="submit" class="btn btn-sm btn-primary">import</button>

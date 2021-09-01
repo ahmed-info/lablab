@@ -25,7 +25,7 @@ class CardsImport implements ToModel, WithHeadingRow
     {
         $company = $this->companies->where('company_name', $row['company_name'])->first();
         return new CompanyCard([
-        'warranty_number'   => $row['warranty_number'],
+        'ss_num'            => $row['ss_num'],
         'full_name'         => $row['full_name'],
         'gender'            => $row['gender'],
         'birth_date'        => $row['birth_date'],
