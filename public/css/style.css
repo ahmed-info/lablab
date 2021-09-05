@@ -1,0 +1,58 @@
+
+
+.companies-tags ul {
+    list-style: none;
+   
+}
+
+.companies-tags ul li {
+    display: inline;
+}
+
+.companies-tags ul li span {
+    text-align: center;
+    margin: 0.5rem;
+}
+
+.login-form {
+    min-width: 40%;
+    min-height: 100%;
+}
+.sidenav {
+    position:absolute;
+    z-index: 100;
+    background: #373A40;
+    left: 1rem;
+    top: 1rem;
+    width: 16rem;
+    height: 30rem;
+    padding: 2rem;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.side-search {
+    width: 100% !important;
+}
+
+.company-list li {
+    margin-top: 1rem;
+    list-style:none;
+}
+
+.company-list li span {
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #fff;
+}
+
+.btn-search {
+    width: 100%;
+    margin: 0.5rem auto;
+}
+@media screen and (max-width:500px) {
+    .login-form {
+        min-width: 100%;
+        min-height: 100%;
+    }
+}
